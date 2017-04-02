@@ -1,0 +1,86 @@
+<v-modal class="vModal--default" onclose="myModalCtrl.close()">
+  <v-dialog class="spot-modal" heading="My modal" medium middle style="padding:0px">
+    <v-close label="Close">
+		<i class="icon ion-ios-close-empty"></i>
+	</v-close>
+	<span ng-if="modal.type=='artist'"><div class="row bg-url"  style="background-image:url({{modal.bg}})" >
+		<div class="ar-name">
+			{{modal.name}}
+		</div>
+		<div class="modal-mask"></div>
+	</div>
+    <div class="row modal-rows">
+		<div class="col generes span_12 border-bottom padding-bottom">
+			<div class="col span_3">
+				Genres
+			</div>
+			<div class="col span_9">
+				<div class="scroll">
+					<div class="gen" ng-repeat="gen in modal.gens">
+						{{gen}}
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col followers span_12   border-bottom">
+			<div class="col span_6 centerContent margin-top">
+				<span>{{modal.followers | abbreviateNumber}} Followers</span>
+			</div>
+			<div class="col span_6 centerContent margin-top">
+				<span>{{modal.popularity}}% Popular</span>
+			</div>
+			 
+		</div>
+		<div class="col generes span_12 padding-top">
+			<div class="col span_3">
+				Albums
+			</div>
+		</div>
+		<div class="col span_12 modal-item modal-item-avatar" ng-repeat="album in modal.albums" ng-click="loadNew(album)">
+			<img ng-src="{{album.images[album.images.length-1].url}}">
+			<h2>{{album.name}}</h2>
+			<p>{{album.artists[0].name}} <span ng-if="album.artists.length>1"> and {{album.artists.length-1}} others</span></p>
+			<img ng-if="album.fetch" class="svg" src="resources/img/default.svg">
+		</div>
+	</div>
+	</span>
+    
+	<span ng-if="modal.type=='album'"><div class="row bg-url"  style="background-image:url({{modal.bg}})" >
+		<div class="ar-name">
+			{{modal.name}}
+		</div>
+		<div class="modal-mask"></div>
+	</div>
+    <div class="row modal-rows">
+		<div class="col generes span_12 border-bottom padding-bottom">
+			<div class="col span_3">
+				Artists
+			</div>
+			<div class="col span_9">
+				<div class="scroll">
+					<div class="gen" ng-repeat="album in modal.artists">
+						{{album.name}}
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		 
+		<div class="col generes span_12  ">
+			<div class="col span_3">
+				Tracks
+			</div>
+		</div>
+		<div class="col span_12 modal-item modal-item-avatar" ng-repeat="album in modal.tracks" ng-click="playPreview(album)">
+			<img ng-src="resources/img/unnamed.png">
+			<h2>{{album.name}}</h2>
+			<p><i class="icon ion-ios-clock-outline"></i> {{album.duration_ms | duration}}</p>
+			<img ng-if="album.fetch" class="svg" src="resources/img/radio.svg">
+		</div>
+	</div>
+	</span>
+	
+	
+  </v-dialog>
+</v-modal>
