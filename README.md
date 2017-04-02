@@ -28,3 +28,7 @@ Also each query is accompanied with a pageno. The default pagesize is 12 defined
 ----------
 When an item is clicked then we show a modal. The UI for artists and albums are different. 
 When viewing an album the user can also a preview a track from the album
+
+
+----------
+[DEMO LINK](https://zodiva-web.firebaseapp.com/#/)
